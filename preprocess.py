@@ -56,7 +56,7 @@ def preprocess(args):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='hello')
 
-    parser.add_argument('--input_dir', default = "./dataset")
+    parser.add_argument('--input_dir', default = "./")
     parser.add_argument('--input_file', default = "train-v2.0.json")
     parser.add_argument('--output_dir', default = "./dataset")
     
