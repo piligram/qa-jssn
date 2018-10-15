@@ -5,7 +5,7 @@ import argparse
 import os
 import time
 
-def feeder(args):    
+def feeder(args):
 
     contexts = []
     titles = []
@@ -13,9 +13,9 @@ def feeder(args):
     questions = []
     answers = []
 
-    input_files = glob.glob(os.path.join(args.input_dir, "*.txt")) 
+    input_files = glob.glob(os.path.join(args.input_dir, "*.txt"))
 
-    for input_file in input_files:  
+    for input_file in input_files:
         with open(input_file, 'r', encoding='utf-8') as f:
             titles.append(input_file[:-4])
             lines = f.readlines()
@@ -48,14 +48,14 @@ def feeder(args):
     cc = 0
     with tf.train.MonitoredTrainingSession() as sess:
         sess.run(iterator.initializer, feed_dict={questions_placeholder: questions, answers_placeholder: answers})
-        while not sess.should_stop(): 
+        while not sess.should_stop():
             cc += 1
             sess.run(next_element)
             if(cc%1000 == 0):
                 print(cc)
     print(cc)
     print(len(questions)/32)
- 
+
 
 
 if __name__ == '__main__':
@@ -63,6 +63,6 @@ if __name__ == '__main__':
 
     parser.add_argument('--input_dir', default = "./dataset")
     parser.add_argument('--output_dir', default = "./dataset")
-    
+
     args = parser.parse_args()
     feeder(args)
